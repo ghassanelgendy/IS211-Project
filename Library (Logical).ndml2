@@ -1,0 +1,1076 @@
+{
+  "paper": {
+    "name": "A4",
+    "leftMargin": 0.5,
+    "rightMargin": 0.5,
+    "topMargin": 0.5,
+    "bottomMargin": 0.5,
+    "isPortriat": true
+  },
+  "modelVersion": 2.01,
+  "defaultSchema": "default",
+  "server": {
+    "objectType": "Server_LOGICAL",
+    "name": "Default",
+    "schemas": [
+      {
+        "objectType": "Schema_LOGICAL",
+        "name": "default",
+        "tables": [
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Publisher",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Name",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Name"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "Name"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Author",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Name",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Name"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "Name"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Publishes",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "ISBN",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "ISBN"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "PublisherName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "PublisherName"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "BookPublished",
+                "fields": [
+                  "ISBN"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Books",
+                "referencedFields": [
+                  "ISBN"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "ManyRelationship",
+                "comment": "",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "PublishingPublisher",
+                "fields": [
+                  "PublisherName"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Publisher",
+                "referencedFields": [
+                  "Name"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "OneAndOnlyOneRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": []
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Writes",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "AuthorName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "AuthorName"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "ISBN",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "ISBN"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "AuthorWrites",
+                "fields": [
+                  "AuthorName"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Author",
+                "referencedFields": [
+                  "Name"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "OneAndOnlyOneRelationship",
+                "comment": "",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "WrittenBook",
+                "fields": [
+                  "ISBN"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Books",
+                "referencedFields": [
+                  "ISBN"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "ManyRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": []
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Books",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "ISBN",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "Others",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "ISBN"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Name",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Name"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "AuthorName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "AuthorName"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "PublisherName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "PublisherName"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "BorrowingPeriod",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "BorrowingPeriod"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Genre",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Genre"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "PublicationYear",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "PublicationYear"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "ISBN"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Admins",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "SSN",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "SSN"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "FirstName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "FirstName"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "LastName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "LastName"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "SSN"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Manages",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "ISBN",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "ISBN"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "SSN",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "SSN"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "AdminManages",
+                "fields": [
+                  "SSN"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Admins",
+                "referencedFields": [
+                  "SSN"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "ManyRelationship",
+                "comment": "",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "ManagedBook",
+                "fields": [
+                  "ISBN"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Books",
+                "referencedFields": [
+                  "ISBN"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "ZeroOrManyRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": []
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Borrows",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "TransactionID",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "TransactionID"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "BorrowDate",
+                "type": "DATE",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "BorrowDate"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "ISBN",
+                "type": "INT",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "ISBN"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "SID",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "SID"
+              }
+            ],
+            "foreignKeys": [
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "StudentBorrows",
+                "fields": [
+                  "SID"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Students",
+                "referencedFields": [
+                  "SID"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "ManyRelationship",
+                "comment": "",
+                "oldName": ""
+              },
+              {
+                "objectType": "ForeignKey_LOGICAL",
+                "name": "BorrowedBook",
+                "fields": [
+                  "ISBN"
+                ],
+                "referencedSchema": "default",
+                "referencedTable": "Books",
+                "referencedFields": [
+                  "ISBN"
+                ],
+                "sourceCardinality": "NoneRelationship",
+                "targetCardinality": "ZeroOrManyRelationship",
+                "comment": "",
+                "oldName": ""
+              }
+            ],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "TransactionID"
+              ],
+              "oldName": ""
+            }
+          },
+          {
+            "objectType": "Table_LOGICAL",
+            "name": "Students",
+            "comment": "",
+            "oldName": "",
+            "fields": [
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "FirstName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "FirstName"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "PhoneNumber",
+                "type": "CHAR VARYING",
+                "length": 25,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "PhoneNumber"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "DateOfBirth",
+                "type": "DATE",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "DateOfBirth"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "LastName",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "LastName"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "SID",
+                "type": "INTEGER",
+                "length": 0,
+                "decimals": 0,
+                "isNullable": false,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "SID"
+              },
+              {
+                "objectType": "TableField_LOGICAL",
+                "name": "Email",
+                "type": "CHAR VARYING",
+                "length": 255,
+                "decimals": 0,
+                "isNullable": true,
+                "defaultType": "None",
+                "defaultValue": "",
+                "comment": "",
+                "oldName": "Email"
+              }
+            ],
+            "foreignKeys": [],
+            "indexes": [],
+            "uniques": [],
+            "primaryKey": {
+              "objectType": "PrimaryKey_LOGICAL",
+              "name": "",
+              "fields": [
+                "SID"
+              ],
+              "oldName": ""
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "diagrams": [
+    {
+      "name": "Diagram 1",
+      "paperWidth": 2,
+      "paperHeight": 1,
+      "tableFont": "Arial Unicode MS",
+      "tableFontSize": 14,
+      "isBalckWhite": false,
+      "showDBSchemaName": false,
+      "showViewRelations": true,
+      "notation": "default",
+      "showFieldComment": false,
+      "showTableComment": false,
+      "shapes": [
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Books",
+          "x": 520,
+          "y": 300,
+          "width": 234,
+          "height": 198,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Admins",
+          "x": 540,
+          "y": 690,
+          "width": 198,
+          "height": 114,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Students",
+          "x": 1010,
+          "y": 300,
+          "width": 198,
+          "height": 177,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Author",
+          "x": 550,
+          "y": 30,
+          "width": 175,
+          "height": 83,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Publisher",
+          "x": 30,
+          "y": 360,
+          "width": 175,
+          "height": 83,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Borrows",
+          "x": 790,
+          "y": 320,
+          "width": 179,
+          "height": 135,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Manages",
+          "x": 550,
+          "y": 550,
+          "width": 170,
+          "height": 93,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Publishes",
+          "x": 250,
+          "y": 340,
+          "width": 227,
+          "height": 93,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        },
+        {
+          "type": "table",
+          "schemaName": "default",
+          "tableName": "Writes",
+          "x": 530,
+          "y": 160,
+          "width": 211,
+          "height": 93,
+          "isBold": false,
+          "titleColor": {
+            "r": 55,
+            "g": 131,
+            "b": 192,
+            "a": 1
+          }
+        }
+      ],
+      "layers": [],
+      "relations": [
+        {
+          "name": "StudentBorrows",
+          "sourceTableName": "Borrows",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 984,
+              "y": 400
+            },
+            {
+              "x": 995,
+              "y": 400
+            }
+          ],
+          "label": {
+            "x": 865,
+            "y": 361,
+            "width": 109,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "BorrowedBook",
+          "sourceTableName": "Borrows",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 775,
+              "y": 400
+            },
+            {
+              "x": 769,
+              "y": 400
+            }
+          ],
+          "label": {
+            "x": 684,
+            "y": 361,
+            "width": 101,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "AdminManages",
+          "sourceTableName": "Manages",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 640,
+              "y": 658
+            },
+            {
+              "x": 640,
+              "y": 675
+            }
+          ],
+          "label": {
+            "x": 535,
+            "y": 607,
+            "width": 107,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "ManagedBook",
+          "sourceTableName": "Manages",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 640,
+              "y": 535
+            },
+            {
+              "x": 640,
+              "y": 513
+            }
+          ],
+          "label": {
+            "x": 542,
+            "y": 504,
+            "width": 100,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "BookPublished",
+          "sourceTableName": "Publishes",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 605,
+              "y": 470
+            },
+            {
+              "x": 569,
+              "y": 470
+            }
+          ],
+          "label": {
+            "x": 513,
+            "y": 431,
+            "width": 102,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "PublishingPublisher",
+          "sourceTableName": "Publishes",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 235,
+              "y": 400
+            },
+            {
+              "x": 220,
+              "y": 400
+            }
+          ],
+          "label": {
+            "x": 251,
+            "y": 402,
+            "width": 132,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "AuthorWrites",
+          "sourceTableName": "Writes",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 640,
+              "y": 145
+            },
+            {
+              "x": 640,
+              "y": 128
+            }
+          ],
+          "label": {
+            "x": 552,
+            "y": 114,
+            "width": 90,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        },
+        {
+          "name": "WrittenBook",
+          "sourceTableName": "Writes",
+          "sourceSchemaName": "default",
+          "lineWidth": 1,
+          "visible": true,
+          "vertices": [
+            {
+              "x": 640,
+              "y": 268
+            },
+            {
+              "x": 640,
+              "y": 285
+            }
+          ],
+          "label": {
+            "x": 557,
+            "y": 217,
+            "width": 85,
+            "height": 31,
+            "fontName": "Arial Unicode MS",
+            "fontSize": 14,
+            "fontColor": {
+              "r": 204,
+              "g": 204,
+              "b": 204,
+              "a": 1
+            },
+            "isFontBold": false,
+            "isFontItalic": false,
+            "isVisible": false
+          }
+        }
+      ],
+      "viewRelations": []
+    }
+  ]
+}
