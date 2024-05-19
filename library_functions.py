@@ -143,6 +143,16 @@ def UpdateStud(SID,Col,Val,conn):
     crsr.execute(query)
     conn.commit()
     conn.close()
+
+def UpdateAdmin(SNN, Col, Val, conn):
+    if Col == 'SSN':
+        conn.close()
+        raise Exception('Cannot Edit Admin\'s SSN')
+    crsr = conn.cursor()
+    query = f"Update Admins set {Col} = '{Val}' where SSN = {SSN}"
+    crsr.execute(query)
+    conn.commit()
+    conn.close()
 def UpdateBook(ISBN,Col,Val,conn):
     if Col == 'ISBN':
       conn.close()
