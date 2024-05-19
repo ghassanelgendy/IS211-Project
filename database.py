@@ -6,7 +6,7 @@ import pandas as pd
 from tkintertable import TableCanvas, TableModel
 
 cnxn_str = ("Driver={ODBC Driver 17 for SQL Server};"
-            "Server=localhost\SQLEXPRESS;"
+            "Server=localhost;"
             "Database=library;"
             "Trusted_Connection=yes;")
 cnxn = pyodbc.connect(cnxn_str)
@@ -165,29 +165,28 @@ def DeleteStud(SID, conn):
     query = f"Delete from Students where SID = {SID}"
     crsr.execute(query)
     conn.commit()
-    conn.close()
+    
 
 
 def UpdateStud(SID, Col, Val, conn):
     if Col == 'SID':
-        conn.close()
+        
         raise Exception('Cannot Edit Student\'s Id')
     crsr = conn.cursor()
     query = f"Update Students set {Col} = '{Val}' where SID = {SID}"
     crsr.execute(query)
     conn.commit()
-    conn.close()
 
 
 def UpdateBook(ISBN, Col, Val, conn):
     if Col == 'ISBN':
-        conn.close()
+        
         raise Exception('Cannot Edit Book\'s ISBN')
     crsr = conn.cursor()
     query = f"Update Books set {Col} = '{Val}' where ISBN = {ISBN}"
     crsr.execute(query)
     conn.commit()
-    conn.close()
+
 
 def Number_of_Books_Borrowed_by_AllStuds(conn):
     crsr = conn.cursor()
@@ -198,7 +197,7 @@ def Number_of_Books_Borrowed_by_AllStuds(conn):
     """
     crsr.execute(query)
     data = crsr.fetchall()
-    conn.close()
+
 
     return data
 
@@ -212,7 +211,7 @@ def Number_of_Books_Borrowed_by_AStud(SID, conn):
     """
     crsr.execute(query)
     data = crsr.fetchall()
-    conn.close()
+
     return data[0] if data else None
 
 def NumberOfBooksWrittenByAllAuthors(conn):
@@ -224,7 +223,7 @@ def NumberOfBooksWrittenByAllAuthors(conn):
     """
     crsr.execute(query)
     data = crsr.fetchall()
-    conn.close()
+
     return data
 
 def BooksByAuthor(Name, conn):
@@ -236,18 +235,18 @@ def BooksByAuthor(Name, conn):
     crsr = conn.cursor()
     crsr.execute(query)
     data = crsr.fetchall()
-    conn.close()
+
     return data
 
 def UpdateAdmin(SSN,Col,Val,conn):
     if Col == 'SSN':
-      conn.close()
+      
       raise Exception('Cannot Edit Admin\'s SSN')
     crsr = conn.cursor()
     query = f"Update Admins set {Col} = '{Val}' where SSN = {SSN}"
     crsr.execute(query)
     conn.commit()
-    conn.close()
+
 
 def sign_up():
     def admin_signup():
